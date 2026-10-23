@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Invitation de mariage</title>
+  <meta name="description" content="Vous êtes invités à notre mariage.">
+  <meta name="theme-color" content="#3B2418">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Aperçu lors du partage du lien (WhatsApp, Messenger, SMS…).
+       Une fois le site en ligne, remplacez og:image par l'adresse complète de la photo,
+       par exemple : https://votre-site.vercel.app/photos/accueil.jpg -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Notre invitation de mariage">
+  <meta property="og:description" content="Nous avons la joie de vous inviter à célébrer notre mariage. Ouvrez l'enveloppe pour découvrir notre invitation.">
+  <meta property="og:image" content="photos/accueil.jpg">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23B8553A'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
+  <link rel="preload" as="image" href="photos/accueil.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="style.css">
+
+  <noscript>
+    <style>
+      .intro{display:none}
+      .site{opacity:1;visibility:visible}
+      .reveal,.split .wi,.swatch{opacity:1;transform:none}
+      body.is-locked{overflow:auto}
+    </style>
+  </noscript>
+</head>
+
+<body class="is-locked">
+
+  <!-- ====================== OUVERTURE : L'ENVELOPPE ====================== -->
+  <div class="intro" id="intro">
+    <div class="intro__stage">
+
+      <p class="intro__eyebrow" data-bind="intro.surtitre"></p>
+      <p class="intro__names" data-bind="noms"></p>
+
+      <div class="envelope" id="envelope">
+        <div class="env-back"></div>
+
+        <div class="card" aria-hidden="true">
+          <div class="card__inner">
+            <p class="card__eyebrow" data-bind="intro.carte"></p>
+            <p class="card__names">
+              <span data-bind="prenom1"></span>
+              <span class="card__amp">&amp;</span>
+              <span data-bind="prenom2"></span>
+            </p>
+            <p class="card__date" data-bind="dateLongue"></p>
+          </div>
+        </div>
+
+        <svg class="front" viewBox="0 0 100 68" aria-hidden="true" focusable="false">
+          <polygon points="0,0 50,37.4 100,0 100,68 0,68" fill="#B8553A"/>
+          <polygon points="0,0 50,37.4 0,68" fill="#BD5B3F"/>
+          <polygon points="100,0 50,37.4 100,68" fill="#B0503A"/>
+          <polygon points="0,68 50,37.4 100,68" fill="#C46441"/>
+        </svg>
+
+        <div class="flap-wrap" aria-hidden="true">
+          <svg class="flap" viewBox="0 0 100 37.4" preserveAspectRatio="none" focusable="false"><polygon points="0,0 100,0 50,37.4"/></svg>
+        </div>
+
+        <div class="seal" id="seal" aria-hidden="true"><span data-bind="initiales"></span></div>
+      </div>
+
+      <button class="btn btn--ghost intro__btn" id="openBtn" type="button" data-bind="intro.bouton"></button>
+    </div>
+  </div>
+
+  <!-- ============================== LE SITE ============================== -->
+  <main class="site" id="site" tabindex="-1">
+
+    <!-- 1. ACCUEIL -->
+    <header class="hero" id="accueil">
+      <div class="hero__media">
+        <img class="hero__img" src="photos/accueil.jpg" alt="" decoding="async" fetchpriority="high">
+      </div>
+
+      <div class="hero__inner">
+        <p class="eyebrow eyebrow--light reveal" data-seq=".3" data-bind="accueil.surtitre"></p>
+        <h1 class="hero__names split" id="heroNames" data-seq=".6"></h1>
+        <p class="hero__date reveal" data-seq="1.7" data-bind="dateLongue"></p>
+        <p class="hero__place reveal" data-seq="1.85" data-bind="lieuLigne"></p>
+        <p class="hero__phrase reveal" data-seq="2.05" data-bind="accueil.phrase"></p>
+
+        <div class="countdown reveal" id="countdown" data-seq="2.3" role="timer" aria-label="Compte à rebours jusqu'au mariage">
+          <div class="cd"><span class="cd__n" data-unit="d">0</span><span class="cd__l" data-bind="compteur.jours"></span></div>
+          <div class="cd"><span class="cd__n" data-unit="h">00</span><span class="cd__l" data-bind="compteur.heures"></span></div>
+          <div class="cd"><span class="cd__n" data-unit="m">00</span><span class="cd__l" data-bind="compteur.minutes"></span></div>
+          <div class="cd"><span class="cd__n" data-unit="s">00</span><span class="cd__l" data-bind="compteur.secondes"></span></div>
+        </div>
+      </div>
+
+      <a class="hero__hint" href="#histoire" data-bind="accueil.defiler"></a>
+    </header>
+
+    <!-- 2. NOTRE HISTOIRE -->
+    <section class="section" id="histoire">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow reveal" data-bind="histoire.surtitre"></p>
+          <h2 class="title split" data-bind="histoire.titre"></h2>
+          <span class="orn reveal" aria-hidden="true"></span>
+        </div>
+        <div class="timeline" id="timeline">
+          <div class="timeline__fill" aria-hidden="true"></div>
+          <ol class="steps" id="steps"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. GALERIE -->
+    <section class="section section--alt" id="galerie">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow reveal" data-bind="galerie.surtitre"></p>
+          <h2 class="title split" data-bind="galerie.titre"></h2>
+          <span class="orn reveal" aria-hidden="true"></span>
+        </div>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+
+    <!-- 4. LE PROGRAMME -->
+    <section class="section" id="programme">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow reveal" data-bind="programme.surtitre"></p>
+          <h2 class="title split" data-bind="programme.titre"></h2>
+          <span class="orn reveal" aria-hidden="true"></span>
+        </div>
+        <ol class="agenda" id="agenda" data-stagger></ol>
+      </div>
+    </section>
+
+    <!-- 5. LE LIEU -->
+    <section class="section section--alt" id="lieu">
+      <div class="wrap venue">
+        <div class="head">
+          <p class="eyebrow reveal" data-bind="lieu.surtitre"></p>
+          <h2 class="title split" data-bind="lieu.titre"></h2>
+          <span class="orn reveal" aria-hidden="true"></span>
+        </div>
+
+        <h3 class="venue__name reveal" data-bind="lieu.nom"></h3>
+        <address class="venue__addr reveal">
+          <span data-bind="lieu.adresse"></span><br>
+          <span data-bind="lieu.ville"></span>
+        </address>
+        <p class="venue__note reveal" data-bind="lieu.note"></p>
+
+        <div class="map reveal">
+          <iframe id="mapFrame" title="Carte du lieu de la réception" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+
+        <div class="reveal">
+          <a class="btn btn--solid" id="routeBtn" target="_blank" rel="noopener">
+            <span data-bind="lieu.bouton"></span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. TENUE -->
+    <section class="section" id="tenue">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow reveal" data-bind="tenue.surtitre"></p>
+          <h2 class="title split" data-bind="tenue.titre"></h2>
+          <span class="orn reveal" aria-hidden="true"></span>
+        </div>
+        <p class="dress__text reveal" data-bind="tenue.texte"></p>
+        <ul class="swatches" id="swatches" data-stagger></ul>
+      </div>
+    </section>
+
+    <!-- 7. CONFIRMER MA PRÉSENCE -->
+    <section class="section rsvp" id="presence">
+      <div class="wrap">
+        <div class="rsvp__card">
+          <p class="eyebrow reveal" data-bind="presence.surtitre"></p>
+          <h2 class="title split" data-bind="presence.titre"></h2>
+          <p class="rsvp__text reveal" data-bind="presence.texte"></p>
+          <p class="rsvp__deadline reveal">
+            <span class="rsvp__deadline-l" data-bind="presence.limiteLabel"></span>
+            <strong class="rsvp__deadline-d" data-bind="dateLimiteLongue"></strong>
+          </p>
+          <div class="reveal">
+            <a class="btn btn--light" id="rsvpBtn" target="_blank" rel="noopener">
+              <span data-bind="presence.bouton"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. PIED DE PAGE -->
+    <footer class="footer">
+      <p class="footer__thanks reveal" data-bind="pied.merci"></p>
+      <p class="footer__mono reveal" data-bind="monogramme"></p>
+      <p class="footer__tag reveal" data-bind="hashtag"></p>
+      <p class="footer__date reveal" data-bind="dateLongue"></p>
+    </footer>
+
+  </main>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
